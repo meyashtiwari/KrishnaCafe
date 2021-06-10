@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ProductsSection = ({ children }) => {
+const ProductsSection = ({title, children }) => {
     return (
         <ProductsContainer>
-            <ProductsHeading>Heading</ProductsHeading>
+            <ProductsHeading>{title}</ProductsHeading>
             <ProductsWrapper>
                 {children}
             </ProductsWrapper>

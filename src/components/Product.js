@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Product = () => {
+const Product = ({img, name, price, button}) => {
 
     return (
-
         <ProductCard>
             <ProductImg src={img} />
             <ProductInfo>
