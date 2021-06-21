@@ -1,14 +1,19 @@
-import React from 'react'
-import Layout from "../components/layout"
-import HeroImg from '../components/HeroImg'
+import React from "react";
+import Layout from "../components/layout";
+import HeroImg from "../components/HeroImg";
+import ServiceSection from "../components/ServiceSection";
+import InfoSection from "../components/InfoSection";
 
-const service = () => {
+import { servicePageData, servicesData } from "../data/servicePageData";
 
-    return (
-      <Layout>
-        <HeroImg title="Our Services" />
-      </Layout>
-    )
-}
+const Service = () => {
+	return (
+		<Layout>
+			<HeroImg title="Our Services" />
+			<ServiceSection servicesData={servicesData} />
+			<InfoSection {...servicePageData} />
+		</Layout>
+	);
+};
 
-export default service
+export default Service;

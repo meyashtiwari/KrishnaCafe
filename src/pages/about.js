@@ -1,14 +1,19 @@
-import React from 'react'
-import HeroImg from '../components/HeroImg'
-import Layout from "../components/layout"
+import React from "react";
+import HeroImg from "../components/HeroImg";
+import Layout from "../components/layout";
+import InfoSection from "../components/InfoSection";
+import Team from "../components/Team";
 
-const about = () => {
+import { aboutPageData, teamData } from "../data/aboutPageData";
 
-    return (
-      <Layout>
-        <HeroImg title="About us"/>
-      </Layout>
-    )
-}
+const About = () => {
+	return (
+		<Layout>
+			<HeroImg title="About us" />
+			<InfoSection {...aboutPageData} />
+			<Team teamData={teamData} />
+		</Layout>
+	);
+};
 
-export default about
+export default About;

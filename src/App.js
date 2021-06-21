@@ -1,22 +1,22 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import HomePage from './pages/home'
-import about from './pages/about'
-import menu from './pages/menu'
-import service from './pages/service'
+import HomePage from "./pages/HomePage";
+import About from "./pages/About";
+import Menu from "./pages/Menu";
+import Service from "./pages/Service";
 
 function App() {
-  return (
-    <Router>
+	return (
+		<Router>
 			<Switch>
 				<Route path="/" component={HomePage} exact />
-				<Route path="/service" component={service} exact />
-				<Route path="/menu" component={menu} exact />
-				<Route path="/about" component={about} exact />
+				<Route path="/service" component={Service} exact />
+				<Route path="/menu" component={Menu} exact />
+				<Route path="/about" component={About} exact />
 			</Switch>
 		</Router>
-  );
+	);
 }
 
 export default App;
