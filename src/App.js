@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import About from "./pages/About";
 import Menu from "./pages/Menu";
 import Service from "./pages/Service";
+import Featured from "./pages/Featured";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Route path="/service" component={Service} exact />
 				<Route path="/menu" component={Menu} exact />
 				<Route path="/about" component={About} exact />
+				<Route path="/featured" component={Featured} exact />
 			</Switch>
 		</Router>
 	);

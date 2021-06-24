@@ -1,25 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import featuredBg from "../assets/images/featured-bg.jpg";
+import { Link } from "react-router-dom";
 
-const Featured = () => {
+const FeaturedSection = () => {
 	return (
 		<FeaturedContainer>
 			<h1>Today's Specials</h1>
 			<p>Try something from our most popular items</p>
-			<FeaturedButton>Order Now</FeaturedButton>
+			<FeaturedButton to="/featured">Order Now</FeaturedButton>
 		</FeaturedContainer>
 	);
 };
 
-export default Featured;
+export default FeaturedSection;
 
 const FeaturedContainer = styled.div`
-	background: linear-gradient(
-			to right,
-			rgba(0, 0, 0, 0.7),
-			rgba(0, 0, 0, 0.1)
-		),
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
 		url(${featuredBg});
 	height: 100vh;
 	max-height: 500px;
@@ -43,13 +40,14 @@ const FeaturedContainer = styled.div`
 	}
 `;
 
-const FeaturedButton = styled.button`
+const FeaturedButton = styled(Link)`
 	font-size: 1.4rem;
 	padding: 0.6rem 3rem;
 	border: none;
 	background: #ffc500;
 	color: #000;
 	transition: 0.2s ease-out;
+	text-decoration: none;
 
 	&:hover {
 		color: #fff;

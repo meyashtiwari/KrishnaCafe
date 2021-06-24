@@ -1,25 +1,15 @@
 export const getProducts = `
-query {
-    productCategories(where: {name: "Breakfast and Snacks"}) {
-      edges {
-        node {
-          products {
-            edges {
-              node {
-                ... on SimpleProduct {
-                  id
-                  name
-                  price
-                  image {
-                    altText
-                    sourceUrl
-                  }
-                }
-              }
-            }
-          }
+query MyQuery {
+  products(where: {category: "Breakfast and Snacks"}) {
+    nodes {
+      ... on SimpleProduct {
+        name
+        price
+        image {
+          sourceUrl
         }
       }
     }
-  }  
-`
+  }
+}
+`;

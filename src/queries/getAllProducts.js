@@ -1,15 +1,16 @@
 export const getAllProducts = `
 query MyQuery {
-    products {
-      nodes {
-        ... on SimpleProduct {
-          name
-          price
-          image {
-            sourceUrl
-          }
+  products(first: 15) {
+    nodes {
+      ... on SimpleProduct {
+        name
+        price
+        image {
+          sourceUrl
         }
       }
     }
-  }  
+  }
+}
+
 `;

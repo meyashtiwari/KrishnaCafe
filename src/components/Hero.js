@@ -42,11 +42,7 @@ const HeroBg = styled.div`
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	background: linear-gradient(
-		to right,
-		rgba(0, 0, 0, 0.7),
-		rgba(0, 1, 1, 0.8)
-	);
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 1, 1, 0.8));
 	opacity: 0.6;
 `;
 
