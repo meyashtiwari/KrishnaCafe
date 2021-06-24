@@ -6,10 +6,10 @@ const initialState = {
 	error: null,
 };
 
-const Cart = ({ children }) => {
+const CartStateProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(Reducer, initialState);
 	return <Context.Provider value={[state, dispatch]}>{children}</Context.Provider>;
 };
 
 export const Context = createContext(initialState);
-export default Cart;
+export default CartStateProvider;

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { createClient, Provider } from "urql";
-import Cart from "./store/Cart";
+import CartStateProvider from "./store/Store";
 
 const client = createClient({
 	url: "http://localhost/graphql",
@@ -10,9 +10,9 @@ const client = createClient({
 
 ReactDOM.render(
 	<Provider value={client}>
-		<Cart>
+		<CartStateProvider>
 			<App />
-		</Cart>
+		</CartStateProvider>
 	</Provider>,
 	document.getElementById("root")
 );

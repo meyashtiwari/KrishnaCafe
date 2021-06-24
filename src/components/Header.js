@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FaPizzaSlice } from "react-icons/fa";
+import FastfoodIcon from "@material-ui/icons/Fastfood";
+import Badge from "@material-ui/core/Badge";
+import { Context } from "../store/Store";
 
 const Header = ({ toggle }) => {
 	const [scrollNav, setScrollNav] = useState(false);
+	const [state] = useContext(Context);
 
 	const changeNav = () => {
 		if (window.scrollY >= 80) {
@@ -16,6 +19,10 @@ const Header = ({ toggle }) => {
 
 	useEffect(() => {
 		window.addEventListener("scroll", changeNav);
+
+		return () => {
+			window.removeEventListener("scroll", changeNav);
+		};
 	}, []);
 
 	return (
@@ -23,7 +30,9 @@ const Header = ({ toggle }) => {
 			<NavLink to="/">Krishna Cafe</NavLink>
 			<NavIcon onClick={toggle}>
 				<p>Menu</p>
-				<Bars />
+				<StyledBadge badgeContent={state.cart.length} color="primary">
+					<FastfoodIcon fontSize="large" />
+				</StyledBadge>
 			</NavIcon>
 		</Nav>
 	);
@@ -59,6 +68,7 @@ const NavLink = styled(Link)`
 const NavIcon = styled.div`
 	display: block;
 	position: absolute;
+	margin-top: 9px;
 	top: 0;
 	right: 0;
 	cursor: pointer;
@@ -70,9 +80,8 @@ const NavIcon = styled.div`
 	}
 `;
 
-const Bars = styled(FaPizzaSlice)`
-	font-size: 2rem;
-	transform: translate(-50%, -15%);
+const StyledBadge = styled(Badge)`
+	transform: translate(-70%, -40%);
 `;
 
 export default Header;

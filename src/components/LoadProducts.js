@@ -29,6 +29,7 @@ const LoadProducts = ({ Query, Title }) => {
 			{products.map((data, index) => (
 				<Product
 					key={index}
+					id={data.databaseId}
 					img={data.image.sourceUrl}
 					name={data.name}
 					price={data.price}
