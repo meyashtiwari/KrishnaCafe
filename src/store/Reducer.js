@@ -6,9 +6,12 @@ const Reducer = (state, action) => {
 				cart: state.cart.concat(action.payload),
 			};
 		case "REMOVE_FROM_CART":
+			let index = state.cart.indexOf(action.payload);
+			let items = state.cart;
+			items.splice(index, 1);
 			return {
 				...state,
-				cart: state.cart.filter((cart) => cart.id !== action.payload),
+				cart: items,
 			};
 		case "SET_ERROR":
 			return {
