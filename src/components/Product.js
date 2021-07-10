@@ -9,7 +9,7 @@ const Product = ({ id, img, name, price, button }) => {
 	let countOfProductsAdded = useRef(0);
 
 	useEffect(() => {
-		countOfProductsAdded.current = state.cart.filter((v) => v === id).length;
+		countOfProductsAdded.current = state.cart.get(id);
 		if (countOfProductsAdded.current > 0) {
 			setCartButtonIsActive(true);
 		} else {

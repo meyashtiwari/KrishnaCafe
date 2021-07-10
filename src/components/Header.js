@@ -7,6 +7,7 @@ import { Context } from "../store/Store";
 
 const Header = ({ toggle }) => {
 	const [scrollNav, setScrollNav] = useState(false);
+	const [totalItems, setTotalItems] = useState(0);
 	const [state] = useContext(Context);
 
 	const changeNav = () => {
@@ -16,6 +17,14 @@ const Header = ({ toggle }) => {
 			setScrollNav(false);
 		}
 	};
+
+	useEffect(() => {
+		let count = 0;
+		for (let qty of state.cart.values()) {
+			count += qty;
+		}
+		setTotalItems(count);
+	}, [state]);
 
 	useEffect(() => {
 		window.addEventListener("scroll", changeNav);
@@ -30,7 +39,7 @@ const Header = ({ toggle }) => {
 			<NavLink to="/">Krishna Cafe</NavLink>
 			<NavIcon onClick={toggle}>
 				<p>Menu</p>
-				<StyledBadge badgeContent={state.cart.length} color="primary">
+				<StyledBadge badgeContent={totalItems} color="primary">
 					<FastfoodIcon fontSize="large" />
 				</StyledBadge>
 			</NavIcon>
@@ -58,9 +67,9 @@ const NavLink = styled(Link)`
 	text-decoration: none;
 	cursor: pointer;
 
-	@media screen and (max-width: 400px) {
+	@media screen and (max-width: 425px) {
 		position: absolute;
-		top: 10px;
+		top: 16px;
 		left: 25px;
 	}
 `;

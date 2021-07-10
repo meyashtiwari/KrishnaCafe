@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Menu from "./pages/Menu";
 import Service from "./pages/Service";
 import Featured from "./pages/Featured";
+import Cart from "./pages/Cart";
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/menu" component={Menu} exact />
 				<Route path="/about" component={About} exact />
 				<Route path="/featured" component={Featured} exact />
+				<Route path="/plate" component={Cart} exact />
 			</Switch>
 		</Router>
 	);

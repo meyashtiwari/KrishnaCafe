@@ -1,17 +1,21 @@
 const Reducer = (state, action) => {
 	switch (action.type) {
 		case "ADD_TO_CART":
+			var id = action.payload;
+			var count = 1;
+			if (state.cart.has(id)) {
+				count += state.cart.get(id);
+			}
 			return {
 				...state,
-				cart: state.cart.concat(action.payload),
+				cart: state.cart.set(id, count),
 			};
 		case "REMOVE_FROM_CART":
-			let index = state.cart.indexOf(action.payload);
-			let items = state.cart;
-			items.splice(index, 1);
+			id = action.payload;
+			count = state.cart.get(id);
 			return {
 				...state,
-				cart: items,
+				cart: state.cart.set(id, count - 1),
 			};
 		case "SET_ERROR":
 			return {

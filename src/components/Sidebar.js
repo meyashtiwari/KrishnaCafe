@@ -15,7 +15,10 @@ const Sidebar = ({ isOpen, toggle }) => {
 				<SidebarLink to="/about">About Us</SidebarLink>
 			</SidebarMenu>
 			<SideBtnWrap>
-				<SidebarRoute to="/login">Login</SidebarRoute>
+				<InnerBtnWrap>
+					<SidebarRoute to="/plate">My Plate</SidebarRoute>
+					<SidebarRoute to="/login">Login</SidebarRoute>
+				</InnerBtnWrap>
 			</SideBtnWrap>
 		</SidebarContainer>
 	);
@@ -84,6 +87,12 @@ const SidebarLink = styled(Link)`
 const SideBtnWrap = styled.div`
 	display: flex;
 	justify-content: center;
+	text-align: center;
+`;
+
+const InnerBtnWrap = styled.div`
+	display: flex;
+	flex-direction: column;
 `;
 
 const SidebarRoute = styled(Link)`
@@ -95,6 +104,7 @@ const SidebarRoute = styled(Link)`
 	outline: none;
 	border: none;
 	cursor: pointer;
+	margin-bottom: 1rem;
 	transition: 0.2s ease-in-out;
 	text-decoration: none;
 
