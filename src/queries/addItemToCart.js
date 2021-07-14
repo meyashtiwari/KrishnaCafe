@@ -1,7 +1,8 @@
 export const addItemToCart = `
-mutation MyMutation {
+mutation MyMutation($items: [CartItemInput]!, $clientID: String) {
   __typename
-  addCartItems(input: {items: [{productId: 61, quantity: 2},{productId: 35, quantity: 2}], clientMutationId: "123"}) {
+  addCartItems(input: {items: $items, clientMutationId: $clientID}) {
+    clientMutationId
     cart {
       isEmpty
       total

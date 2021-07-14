@@ -3,30 +3,30 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
-import { addItemsToCart } from "../queries/addItemToCart";
-import { useQuery } from "urql";
+import { addItemToCart } from "../queries/addItemToCart";
+import { useMutation } from "urql";
 
 import { Context } from "../store/Store";
 import Loading from "./Loading";
 
 const ShoppingCart = () => {
 	const [state, dispatch] = useContext(Context);
+	const [cartItems, setCartItems] = useState([]);
 
-	const [result] = useQuery({
-		query: addItemsToCart,
+	const [result, updateCart] = useMutation({
+		query: addItemToCart,
 		variables: { id: 61 },
 	});
 
 	const { data, fetching, error } = result;
-	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
-		let fetchedProducts = [];
+		let fetchedItems = [];
 		if (!fetching && !error) {
 			// fetchedProducts = data.products.nodes;
 			console.log(result);
 		}
-		setProducts(fetchedProducts);
+		setCartItems(fetchedItems);
 	}, [fetching, data, error]);
 
 	return (
@@ -34,9 +34,9 @@ const ShoppingCart = () => {
 			<Heading>Items in your Plate</Heading>
 			<Cart>
 				<Products>
-					{fetching && <Loading />}
+					{/* {fetching && <Loading />}
 					{error && <div>Error fetching products</div>}
-					{products.map((data, index) => (
+					{cartItems.map((data, index) => (
 						<Product key={index}>
 							<ProductImg src={data.image.sourceUrl} />
 							<ProductInfo>
@@ -51,7 +51,7 @@ const ShoppingCart = () => {
 								</ProductRemove>
 							</ProductInfo>
 						</Product>
-					))}
+					))} */}
 				</Products>
 				<CartTotal>
 					<TotalPrice>
