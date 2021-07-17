@@ -17,6 +17,12 @@ const Reducer = (state, action) => {
 				...state,
 				cart: state.cart.set(id, count - 1),
 			};
+		case "DELETE_FROM_CART":
+			id = action.payload;
+			return {
+				...state,
+				cart: state.cart.set(id, 0),
+			};
 		case "SET_ERROR":
 			return {
 				...state,

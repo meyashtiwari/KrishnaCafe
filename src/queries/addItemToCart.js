@@ -4,14 +4,13 @@ mutation MyMutation($items: [CartItemInput]!, $clientID: String) {
   addCartItems(input: {items: $items, clientMutationId: $clientID}) {
     clientMutationId
     cart {
-      isEmpty
-      total
       contents {
         itemCount
         nodes {
           product {
             node {
               ... on SimpleProduct {
+                databaseId
                 name
                 price
                 image {
@@ -20,9 +19,12 @@ mutation MyMutation($items: [CartItemInput]!, $clientID: String) {
               }
             }
           }
+          quantity
+          subtotal
         }
       }
+      total
     }
   }
-} 
+}
 `;

@@ -8,63 +8,99 @@ import { useMutation } from "urql";
 
 import { Context } from "../store/Store";
 import Loading from "./Loading";
+import EmptyCart from "./EmptyCart";
 
 const ShoppingCart = () => {
 	const [state, dispatch] = useContext(Context);
 	const [cartItems, setCartItems] = useState([]);
+	const [totalPrice, setTotalPrice] = useState(0);
+	const [totalItems, setTotalItems] = useState(0);
+	const [cartIsEmpty, setCartIsEmpty] = useState(true);
 
-	const [result, updateCart] = useMutation({
-		query: addItemToCart,
-		variables: { id: 61 },
-	});
+	let items = [];
+	for (let itemsInCart of state.cart) {
+		if (itemsInCart[1] > 0) {
+			items.push({ productId: itemsInCart[0], quantity: itemsInCart[1] });
+		}
+	}
+	function toObject(arr) {
+		var rv = {};
+		for (var i = 0; i < arr.length; ++i) rv[i] = arr[i];
+		return rv;
+	}
+	const itemsObject = toObject(items);
 
-	const { data, fetching, error } = result;
+	const [result, updateCart] = useMutation(addItemToCart);
 
 	useEffect(() => {
-		let fetchedItems = [];
-		if (!fetching && !error) {
-			// fetchedProducts = data.products.nodes;
-			console.log(result);
-		}
-		setCartItems(fetchedItems);
-	}, [fetching, data, error]);
+		const variables = { items: itemsObject, clientID: "56" };
+		updateCart(variables).then((result) => {
+			if (result.error) {
+				console.log(result.error);
+				setCartIsEmpty(true);
+			} else {
+				let fetchedItems = result.data.addCartItems.cart.contents.nodes;
+				setCartItems(fetchedItems);
+				setCartIsEmpty(false);
+				setTotalItems(result.data.addCartItems.cart.contents.itemCount);
+				setTotalPrice(result.data.addCartItems.cart.total);
+			}
+		});
+	}, [state]);
 
 	return (
 		<ShoppingCartConatiner>
-			<Heading>Items in your Plate</Heading>
-			<Cart>
-				<Products>
-					{/* {fetching && <Loading />}
-					{error && <div>Error fetching products</div>}
-					{cartItems.map((data, index) => (
-						<Product key={index}>
-							<ProductImg src={data.image.sourceUrl} />
-							<ProductInfo>
-								<ProductName>{data.name}</ProductName>
-								<ProductPrice>{data.price}</ProductPrice>
-								<ProductQuantity>
-									Qty: <Quantity type="number" min="1" max="9" placeholder="1" />
-								</ProductQuantity>
-								<ProductRemove>
-									<StyledDeleteForeverIcon />
-									<Remove>Remove</Remove>
-								</ProductRemove>
-							</ProductInfo>
-						</Product>
-					))} */}
-				</Products>
-				<CartTotal>
-					<TotalPrice>
-						<span>Total Price</span>
-						<span>3000</span>
-					</TotalPrice>
-					<NumberOfItems>
-						<span>Number of Items</span>
-						<span>2</span>
-					</NumberOfItems>
-					<CheckoutButton>Checkout</CheckoutButton>
-				</CartTotal>
-			</Cart>
+			{result.fetching && <Loading />}
+			{cartIsEmpty && <EmptyCart />}
+			{!cartIsEmpty && (
+				<>
+					<Heading>Items in your Plate</Heading>
+					<Cart>
+						<Products>
+							{cartItems.map((data, index) => (
+								<Product key={index}>
+									<ProductImg src={data.product.node.image.sourceUrl} />
+									<ProductInfo>
+										<ProductName>{data.product.node.name}</ProductName>
+										<ProductPrice>{data.subtotal}</ProductPrice>
+										<ProductQuantity>
+											Qty:{" "}
+											<Quantity
+												type="number"
+												min="1"
+												max="9"
+												placeholder={data.quantity}
+											/>
+										</ProductQuantity>
+										<ProductRemove
+											onClick={() => {
+												dispatch({
+													type: "DELETE_FROM_CART",
+													payload: data.product.node.databaseId,
+												});
+											}}
+										>
+											<StyledDeleteForeverIcon />
+											<Remove>Remove</Remove>
+										</ProductRemove>
+									</ProductInfo>
+								</Product>
+							))}
+						</Products>
+						<CartTotal>
+							<TotalPrice>
+								<span>Total Price</span>
+								<span>{totalPrice}</span>
+							</TotalPrice>
+							<NumberOfItems>
+								<span>Number of Items</span>
+								<span>{totalItems}</span>
+							</NumberOfItems>
+							<CheckoutButton>Checkout</CheckoutButton>
+						</CartTotal>
+					</Cart>
+				</>
+			)}
 		</ShoppingCartConatiner>
 	);
 };
@@ -109,8 +145,8 @@ const Product = styled.div`
 `;
 
 const ProductImg = styled.img`
-	width: 300px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 	object-fit: cover;
 
 	&:hover {
