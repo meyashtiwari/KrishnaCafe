@@ -7,6 +7,8 @@ import Menu from "./pages/Menu";
 import Service from "./pages/Service";
 import Featured from "./pages/Featured";
 import Cart from "./pages/Cart";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
 	return (
@@ -18,6 +20,8 @@ function App() {
 				<Route path="/about" component={About} exact />
 				<Route path="/featured" component={Featured} exact />
 				<Route path="/plate" component={Cart} exact />
+				<Route path="/login" component={Login} exact />
+				<Route path="/signup" component={Signup} exact />
 			</Switch>
 		</Router>
 	);
