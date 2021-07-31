@@ -24,20 +24,14 @@ const EmptyCartContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: -10px;
-	margin-bottom: 30px;
 	border: 0;
-	-webkit-transition: all 0.3s ease;
-	transition: all 0.3s ease;
 	letter-spacing: 0.5px;
 	border-radius: 8px;
-	-webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, 0.05);
-	box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, 0.05);
 `;
 
 const EmptyCartImage = styled.img`
-	width: 350px;
-	height: 350px;
+	width: 300px;
+	height: 300px;
 `;
 
 const EmptyCartContent = styled.div`
@@ -56,6 +50,7 @@ const HeroBtn = styled(Link)`
 	border: none;
 	background: #e31837;
 	text-decoration: none;
+	margin-bottom: 57px;
 	color: #fff;
 	transition: 0.2s ease-out;
 
