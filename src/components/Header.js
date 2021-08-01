@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import Badge from "@material-ui/core/Badge";
-import { Context } from "../store/Store";
+import { Context } from "../store/Cart";
 
 const Header = ({ toggle }) => {
 	const [scrollNav, setScrollNav] = useState(false);

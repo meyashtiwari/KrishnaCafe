@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Context } from "../store/Store";
+import { Context } from "../store/Cart";
 import { AddCircle, RemoveCircle } from "@material-ui/icons";
 import styled from "styled-components";
 

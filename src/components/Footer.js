@@ -18,6 +18,9 @@ const FooterContainer = styled.div`
 	padding: 1rem calc((100vw - 1100px) / 2);
 	color: #fff;
 	background: #0d0909;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 `;
 const FooterDesc = styled.div`
 	padding: 0 2rem;

@@ -6,7 +6,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { addItemToCart } from "../queries/addItemToCart";
 import { useMutation } from "urql";
 
-import { Context } from "../store/Store";
+import { Context } from "../store/Cart";
 import Loading from "./Loading";
 import EmptyCart from "./EmptyCart";
 
@@ -96,7 +96,7 @@ const ShoppingCart = () => {
 								<span>Number of Items</span>
 								<span>{totalItems}</span>
 							</NumberOfItems>
-							<CheckoutButton>Checkout</CheckoutButton>
+							<CheckoutButton to="#">Checkout</CheckoutButton>
 						</CartTotal>
 					</Cart>
 				</>
